@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using Jellyfin.Data.Enums;
 using Jellyfin.Plugin.Kinopoisk.Api;
 using MediaBrowser.Controller.Entities.Movies;
 using MediaBrowser.Controller.Providers;
@@ -91,11 +92,11 @@ public partial class KinopoiskMovieProvider : IRemoteMetadataProvider<Movie, Mov
         };
 
         // Set provider IDs
-        movie.SetProviderId(Plugin.ProviderId, kinopoiskId.ToString(CultureInfo.InvariantCulture));
+        movie.ProviderIds[Plugin.ProviderId] = kinopoiskId.ToString(CultureInfo.InvariantCulture);
         
         if (!string.IsNullOrEmpty(film.ImdbId))
         {
-            movie.SetProviderId(MetadataProvider.Imdb, film.ImdbId);
+            movie.ProviderIds[MetadataProvider.Imdb.ToString()] = film.ImdbId;
         }
 
         // Set genres
@@ -158,7 +159,7 @@ public partial class KinopoiskMovieProvider : IRemoteMetadataProvider<Movie, Mov
             if (film != null)
             {
                 var preferRussian = Plugin.Instance?.Configuration.PreferRussianMetadata ?? true;
-                results.Add(CreateSearchResult(film.EffectiveId, film.GetName(preferRussian), film.Year, film.PosterUrlPreview ?? film.PosterUrl, film.RatingKinopoisk));
+                results.Add(CreateSearchResult(film.EffectiveId, film.GetName(preferRussian), film.Year, film.PosterUrlPreview ?? film.PosterUrl));
             }
         }
         else
@@ -171,7 +172,7 @@ public partial class KinopoiskMovieProvider : IRemoteMetadataProvider<Movie, Mov
                 foreach (var film in searchResponse.Films.Where(f => f.Type == "FILM" || f.Type == "VIDEO").Take(10))
                 {
                     int.TryParse(film.Year, out var year);
-                    results.Add(CreateSearchResult(film.EffectiveId, film.GetName(preferRussian), year > 0 ? year : null, film.PosterUrlPreview ?? film.PosterUrl, film.RatingKinopoisk));
+                    results.Add(CreateSearchResult(film.EffectiveId, film.GetName(preferRussian), year > 0 ? year : null, film.PosterUrlPreview ?? film.PosterUrl));
                 }
             }
         }
@@ -188,7 +189,7 @@ public partial class KinopoiskMovieProvider : IRemoteMetadataProvider<Movie, Mov
     private static int GetKinopoiskId(MovieInfo info)
     {
         // Check if ID is set in provider IDs
-        if (info.TryGetProviderId(Plugin.ProviderId, out var idString) && int.TryParse(idString, out var id))
+        if (info.ProviderIds.TryGetValue(Plugin.ProviderId, out var idString) && int.TryParse(idString, out var id))
         {
             return id;
         }
@@ -226,7 +227,7 @@ public partial class KinopoiskMovieProvider : IRemoteMetadataProvider<Movie, Mov
         return char.ToUpperInvariant(input[0]) + input[1..];
     }
 
-    private static RemoteSearchResult CreateSearchResult(int id, string? name, int? year, string? imageUrl, double? rating)
+    private static RemoteSearchResult CreateSearchResult(int id, string? name, int? year, string? imageUrl)
     {
         var result = new RemoteSearchResult
         {
@@ -236,12 +237,7 @@ public partial class KinopoiskMovieProvider : IRemoteMetadataProvider<Movie, Mov
             SearchProviderName = Plugin.PluginName
         };
         
-        result.SetProviderId(Plugin.ProviderId, id.ToString(CultureInfo.InvariantCulture));
-        
-        if (rating.HasValue)
-        {
-            result.CommunityRating = (float)rating.Value;
-        }
+        result.ProviderIds[Plugin.ProviderId] = id.ToString(CultureInfo.InvariantCulture);
 
         return result;
     }
@@ -254,14 +250,14 @@ public partial class KinopoiskMovieProvider : IRemoteMetadataProvider<Movie, Mov
 
         foreach (var person in staff)
         {
-            var personInfo = new PersonInfo
+            var personInfo = new MediaBrowser.Controller.Entities.PersonInfo
             {
                 Name = person.GetName(preferRussian) ?? "Unknown",
                 ImageUrl = person.PosterUrl,
                 Role = person.Description
             };
 
-            personInfo.SetProviderId(Plugin.ProviderId, person.StaffId.ToString(CultureInfo.InvariantCulture));
+            personInfo.ProviderIds[Plugin.ProviderId] = person.StaffId.ToString(CultureInfo.InvariantCulture);
 
             switch (person.ProfessionKey?.ToUpperInvariant())
             {

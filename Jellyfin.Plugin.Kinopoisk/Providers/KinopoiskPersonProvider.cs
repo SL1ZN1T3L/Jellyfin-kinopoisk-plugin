@@ -38,7 +38,7 @@ public class KinopoiskPersonProvider : IRemoteMetadataProvider<Person, PersonLoo
     {
         var result = new MetadataResult<Person>();
 
-        if (!info.TryGetProviderId(Plugin.ProviderId, out var idString) || !int.TryParse(idString, out var personId))
+        if (!info.ProviderIds.TryGetValue(Plugin.ProviderId, out var idString) || !int.TryParse(idString, out var personId))
         {
             _logger.LogDebug("No Kinopoisk ID found for person {Name}", info.Name);
             return result;
@@ -74,7 +74,7 @@ public class KinopoiskPersonProvider : IRemoteMetadataProvider<Person, PersonLoo
             personResult.EndDate = death;
         }
 
-        personResult.SetProviderId(Plugin.ProviderId, personId.ToString(CultureInfo.InvariantCulture));
+        personResult.ProviderIds[Plugin.ProviderId] = personId.ToString(CultureInfo.InvariantCulture);
 
         result.Item = personResult;
         result.HasMetadata = true;

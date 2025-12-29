@@ -58,7 +58,7 @@ public class KinopoiskMovieImageProvider : IRemoteImageProvider, IHasOrder
     {
         var images = new List<RemoteImageInfo>();
 
-        if (!item.TryGetProviderId(Plugin.ProviderId, out var idString) || !int.TryParse(idString, out var kinopoiskId))
+        if (!item.ProviderIds.TryGetValue(Plugin.ProviderId, out var idString) || !int.TryParse(idString, out var kinopoiskId))
         {
             return images;
         }
@@ -182,7 +182,7 @@ public class KinopoiskSeriesImageProvider : IRemoteImageProvider, IHasOrder
     {
         var images = new List<RemoteImageInfo>();
 
-        if (!item.TryGetProviderId(Plugin.ProviderId, out var idString) || !int.TryParse(idString, out var kinopoiskId))
+        if (!item.ProviderIds.TryGetValue(Plugin.ProviderId, out var idString) || !int.TryParse(idString, out var kinopoiskId))
         {
             return images;
         }
@@ -297,7 +297,7 @@ public class KinopoiskPersonImageProvider : IRemoteImageProvider, IHasOrder
     {
         var images = new List<RemoteImageInfo>();
 
-        if (!item.TryGetProviderId(Plugin.ProviderId, out var idString) || !int.TryParse(idString, out var personId))
+        if (!item.ProviderIds.TryGetValue(Plugin.ProviderId, out var idString) || !int.TryParse(idString, out var personId))
         {
             return images;
         }

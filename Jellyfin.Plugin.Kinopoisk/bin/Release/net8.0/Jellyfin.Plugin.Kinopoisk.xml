@@ -1,0 +1,545 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jellyfin.Plugin.Kinopoisk</name>
+    </assembly>
+    <members>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient">
+            <summary>
+            Client for Kinopoisk API Unofficial.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient"/> class.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.GetFilmAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets film details by Kinopoisk ID.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.SearchFilmsAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Searches for films by keyword.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.GetStaffAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets staff (actors, directors) for a film.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.GetPersonAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets person details by staff ID.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.GetSeasonsAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets seasons for a TV series.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.GetImagesAsync(System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets images/frames for a film.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.GetVideosAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Gets videos/trailers for a film.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskFilm">
+            <summary>
+            Film data from Kinopoisk API.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskFilm.EffectiveId">
+            <summary>
+            Gets the effective Kinopoisk ID.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskFilm.GetName(System.Boolean)">
+            <summary>
+            Gets the best available name.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskCountry">
+            <summary>
+            Country data.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskGenre">
+            <summary>
+            Genre data.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskSearchItem">
+            <summary>
+            Search result item.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskSearchResponse">
+            <summary>
+            Search response.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskStaff">
+            <summary>
+            Staff/Person data.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskPerson">
+            <summary>
+            Person details.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskPersonFilm">
+            <summary>
+            Film reference in person data.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskSeasonsResponse">
+            <summary>
+            Season data for TV series.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskSeason">
+            <summary>
+            Season details.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskEpisode">
+            <summary>
+            Episode details.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskImagesResponse">
+            <summary>
+            Image/frames response.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskImage">
+            <summary>
+            Image data.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskVideosResponse">
+            <summary>
+            Video/trailer data.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Api.Models.KinopoiskVideo">
+            <summary>
+            Video item.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Configuration.PluginConfiguration">
+            <summary>
+            Plugin configuration.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Configuration.PluginConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Configuration.PluginConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Configuration.PluginConfiguration.ApiToken">
+            <summary>
+            Gets or sets the Kinopoisk API token.
+            Get your token at https://kinopoiskapiunofficial.tech
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Configuration.PluginConfiguration.CacheDurationMinutes">
+            <summary>
+            Gets or sets the cache duration in minutes.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Configuration.PluginConfiguration.MaxRequestsPerSecond">
+            <summary>
+            Gets or sets the maximum requests per second.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Configuration.PluginConfiguration.EnableRateLimiting">
+            <summary>
+            Gets or sets a value indicating whether rate limiting is enabled.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Configuration.PluginConfiguration.PreferRussianMetadata">
+            <summary>
+            Gets or sets a value indicating whether to prefer Russian metadata.
+            </summary>
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskMovieExternalId">
+            <summary>
+            External ID for Kinopoisk movies.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskMovieExternalId.ProviderName">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskMovieExternalId.Key">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskMovieExternalId.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskMovieExternalId.UrlFormatString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskMovieExternalId.Supports(MediaBrowser.Model.Entities.IHasProviderIds)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskSeriesExternalId">
+            <summary>
+            External ID for Kinopoisk series.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskSeriesExternalId.ProviderName">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskSeriesExternalId.Key">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskSeriesExternalId.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskSeriesExternalId.UrlFormatString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskSeriesExternalId.Supports(MediaBrowser.Model.Entities.IHasProviderIds)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskPersonExternalId">
+            <summary>
+            External ID for Kinopoisk persons.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskPersonExternalId.ProviderName">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskPersonExternalId.Key">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskPersonExternalId.Type">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskPersonExternalId.UrlFormatString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.ExternalIds.KinopoiskPersonExternalId.Supports(MediaBrowser.Model.Entities.IHasProviderIds)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Plugin">
+            <summary>
+            Kinopoisk metadata plugin for Jellyfin.
+            </summary>
+        </member>
+        <member name="F:Jellyfin.Plugin.Kinopoisk.Plugin.PluginName">
+            <summary>
+            Plugin name constant.
+            </summary>
+        </member>
+        <member name="F:Jellyfin.Plugin.Kinopoisk.Plugin.ProviderId">
+            <summary>
+            Provider name for external IDs.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Plugin.#ctor(MediaBrowser.Common.Configuration.IApplicationPaths,MediaBrowser.Model.Serialization.IXmlSerializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Plugin"/> class.
+            </summary>
+            <param name="applicationPaths">Application paths.</param>
+            <param name="xmlSerializer">XML serializer.</param>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Plugin.Instance">
+            <summary>
+            Gets the plugin instance.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Plugin.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Plugin.Id">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Plugin.GetPages">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskEpisodeProvider">
+            <summary>
+            Episode metadata provider for Kinopoisk.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskEpisodeProvider.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskEpisodeProvider},Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskEpisodeProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskEpisodeProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskEpisodeProvider.GetMetadata(MediaBrowser.Controller.Providers.EpisodeInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskEpisodeProvider.GetSearchResults(MediaBrowser.Controller.Providers.EpisodeInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskEpisodeProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeasonProvider">
+            <summary>
+            Season metadata provider for Kinopoisk.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeasonProvider.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeasonProvider},Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeasonProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeasonProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeasonProvider.GetMetadata(MediaBrowser.Controller.Providers.SeasonInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeasonProvider.GetSearchResults(MediaBrowser.Controller.Providers.SeasonInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeasonProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider">
+            <summary>
+            Image provider for movies.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider},Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider.Order">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider.Supports(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider.GetSupportedImages(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider.GetImages(MediaBrowser.Controller.Entities.BaseItem,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieImageProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider">
+            <summary>
+            Image provider for series.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider},Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider.Order">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider.Supports(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider.GetSupportedImages(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider.GetImages(MediaBrowser.Controller.Entities.BaseItem,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesImageProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider">
+            <summary>
+            Image provider for persons.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider},Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider.Order">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider.Supports(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider.GetSupportedImages(MediaBrowser.Controller.Entities.BaseItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider.GetImages(MediaBrowser.Controller.Entities.BaseItem,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonImageProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieProvider">
+            <summary>
+            Movie metadata provider for Kinopoisk.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieProvider.KinopoiskIdPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>kp-?(\\d+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Kk\u212A].<br/>
+            ○ Match a character in the set [Pp].<br/>
+            ○ Match '-' atomically, optionally.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieProvider.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieProvider},Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieProvider.GetMetadata(MediaBrowser.Controller.Providers.MovieInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieProvider.GetSearchResults(MediaBrowser.Controller.Providers.MovieInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskMovieProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonProvider">
+            <summary>
+            Person metadata provider for Kinopoisk.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonProvider.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonProvider},Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonProvider.GetMetadata(MediaBrowser.Controller.Providers.PersonLookupInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonProvider.GetSearchResults(MediaBrowser.Controller.Providers.PersonLookupInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskPersonProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesProvider">
+            <summary>
+            Series metadata provider for Kinopoisk.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesProvider.KinopoiskIdPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>kp-?(\\d+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Kk\u212A].<br/>
+            ○ Match a character in the set [Pp].<br/>
+            ○ Match '-' atomically, optionally.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesProvider.#ctor(System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesProvider},Microsoft.Extensions.Logging.ILogger{Jellyfin.Plugin.Kinopoisk.Api.KinopoiskApiClient})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesProvider.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesProvider.GetMetadata(MediaBrowser.Controller.Providers.SeriesInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesProvider.GetSearchResults(MediaBrowser.Controller.Providers.SeriesInfo,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.Plugin.Kinopoisk.Providers.KinopoiskSeriesProvider.GetImageResponse(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.KinopoiskIdPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the KinopoiskIdPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.KinopoiskIdPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KinopoiskIdPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.KinopoiskIdPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KinopoiskIdPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.KinopoiskIdPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KinopoiskIdPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KinopoiskIdPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.KinopoiskIdPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+    </members>
+</doc>

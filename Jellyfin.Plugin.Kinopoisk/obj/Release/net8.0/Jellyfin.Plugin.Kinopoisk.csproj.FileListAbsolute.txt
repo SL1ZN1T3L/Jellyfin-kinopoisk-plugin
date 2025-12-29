@@ -1,0 +1,15 @@
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\bin\Release\net8.0\Jellyfin.Plugin.Kinopoisk.deps.json
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\bin\Release\net8.0\Jellyfin.Plugin.Kinopoisk.dll
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\bin\Release\net8.0\Jellyfin.Plugin.Kinopoisk.pdb
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\bin\Release\net8.0\Jellyfin.Plugin.Kinopoisk.xml
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\Jellyfin.Plugin.Kinopoisk.csproj.AssemblyReference.cache
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\Jellyfin.Plugin.Kinopoisk.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\Jellyfin.Plugin.Kinopoisk.AssemblyInfoInputs.cache
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\Jellyfin.Plugin.Kinopoisk.AssemblyInfo.cs
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\Jellyfin.Plugin.Kinopoisk.csproj.CoreCompileInputs.cache
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\Jellyfin.Plugin.Kinopoisk.sourcelink.json
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\Jellyfin.Plugin.Kinopoisk.dll
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\refint\Jellyfin.Plugin.Kinopoisk.dll
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\Jellyfin.Plugin.Kinopoisk.xml
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\Jellyfin.Plugin.Kinopoisk.pdb
+C:\Users\qwert\projects\Jellyfin-kinopoisk-plugin\Jellyfin.Plugin.Kinopoisk\obj\Release\net8.0\ref\Jellyfin.Plugin.Kinopoisk.dll
