@@ -19,7 +19,7 @@ public class KinopoiskMovieExternalId : IExternalId
     public string Key => Plugin.ProviderId;
 
     /// <inheritdoc />
-    public ExternalIdMediaType Type => ExternalIdMediaType.Movie;
+    public ExternalIdMediaType? Type => ExternalIdMediaType.Movie;
 
     /// <inheritdoc />
     public string UrlFormatString => "https://www.kinopoisk.ru/film/{0}/";
@@ -40,7 +40,7 @@ public class KinopoiskSeriesExternalId : IExternalId
     public string Key => Plugin.ProviderId;
 
     /// <inheritdoc />
-    public ExternalIdMediaType Type => ExternalIdMediaType.Series;
+    public ExternalIdMediaType? Type => ExternalIdMediaType.Series;
 
     /// <inheritdoc />
     public string UrlFormatString => "https://www.kinopoisk.ru/series/{0}/";
@@ -61,7 +61,7 @@ public class KinopoiskPersonExternalId : IExternalId
     public string Key => Plugin.ProviderId;
 
     /// <inheritdoc />
-    public ExternalIdMediaType Type => ExternalIdMediaType.Person;
+    public ExternalIdMediaType? Type => ExternalIdMediaType.Person;
 
     /// <inheritdoc />
     public string UrlFormatString => "https://www.kinopoisk.ru/name/{0}/";
