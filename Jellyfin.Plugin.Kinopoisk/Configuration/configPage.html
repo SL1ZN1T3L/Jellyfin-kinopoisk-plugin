@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>КиноПоиск</title>
+</head>
+<body>
+    <div id="KinopoiskConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-checkbox">
+        <div data-role="content">
+            <div class="content-primary">
+                <form id="KinopoiskConfigForm">
+                    <div class="sectionTitleContainer flex align-items-center">
+                        <h2 class="sectionTitle">Настройки КиноПоиск</h2>
+                    </div>
+
+                    <div class="verticalSection">
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="txtApiToken">API Token</label>
+                            <input is="emby-input" type="password" id="txtApiToken" />
+                            <div class="fieldDescription">
+                                Получите токен на сайте <a href="https://kinopoiskapiunofficial.tech" target="_blank">kinopoiskapiunofficial.tech</a>.
+                                Зарегистрируйтесь и скопируйте токен из личного кабинета.
+                            </div>
+                        </div>
+
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="txtCacheDuration">Время кеширования (минуты)</label>
+                            <input is="emby-input" type="number" id="txtCacheDuration" min="1" max="1440" />
+                            <div class="fieldDescription">
+                                Время хранения данных в кеше. Рекомендуется 60 минут.
+                            </div>
+                        </div>
+
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="txtMaxRequests">Максимум запросов в секунду</label>
+                            <input is="emby-input" type="number" id="txtMaxRequests" min="1" max="10" />
+                            <div class="fieldDescription">
+                                Ограничение скорости запросов к API. Бесплатный лимит: 10 запросов/сек.
+                            </div>
+                        </div>
+
+                        <div class="checkboxContainer checkboxContainer-withDescription">
+                            <label class="emby-checkbox-label">
+                                <input is="emby-checkbox" type="checkbox" id="chkEnableRateLimiting" />
+                                <span>Включить ограничение скорости</span>
+                            </label>
+                            <div class="fieldDescription checkboxFieldDescription">
+                                Автоматическое ограничение запросов для предотвращения блокировки.
+                            </div>
+                        </div>
+
+                        <div class="checkboxContainer checkboxContainer-withDescription">
+                            <label class="emby-checkbox-label">
+                                <input is="emby-checkbox" type="checkbox" id="chkPreferRussian" />
+                                <span>Предпочитать русские метаданные</span>
+                            </label>
+                            <div class="fieldDescription checkboxFieldDescription">
+                                Использовать русские названия и описания, если доступны.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="verticalSection" style="margin-top: 2em;">
+                        <h3>Использование</h3>
+                        <p>Плагин автоматически ищет информацию на КиноПоиске при сканировании библиотеки.</p>
+                        <p>Для принудительного указания ID КиноПоиска, добавьте в имя файла или папки паттерн:</p>
+                        <ul>
+                            <li><code>kp-12345</code> или <code>kp12345</code></li>
+                        </ul>
+                        <p>Например: <code>Матрица (1999) kp-301.mkv</code></p>
+                    </div>
+
+                    <div>
+                        <button is="emby-button" type="submit" class="raised button-submit block">
+                            <span>Сохранить</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var KinopoiskConfig = {
+                pluginUniqueId: 'a0ad3c8a-0e15-4c2f-8f5a-9c7b6d4e3f2a'
+            };
+
+            document.querySelector('#KinopoiskConfigPage')
+                .addEventListener('pageshow', function() {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(KinopoiskConfig.pluginUniqueId).then(function(config) {
+                        document.querySelector('#txtApiToken').value = config.ApiToken || '';
+                        document.querySelector('#txtCacheDuration').value = config.CacheDurationMinutes || 60;
+                        document.querySelector('#txtMaxRequests').value = config.MaxRequestsPerSecond || 5;
+                        document.querySelector('#chkEnableRateLimiting').checked = config.EnableRateLimiting;
+                        document.querySelector('#chkPreferRussian').checked = config.PreferRussianMetadata;
+                        Dashboard.hideLoadingMsg();
+                    });
+                });
+
+            document.querySelector('#KinopoiskConfigForm')
+                .addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(KinopoiskConfig.pluginUniqueId).then(function(config) {
+                        config.ApiToken = document.querySelector('#txtApiToken').value;
+                        config.CacheDurationMinutes = parseInt(document.querySelector('#txtCacheDuration').value) || 60;
+                        config.MaxRequestsPerSecond = parseInt(document.querySelector('#txtMaxRequests').value) || 5;
+                        config.EnableRateLimiting = document.querySelector('#chkEnableRateLimiting').checked;
+                        config.PreferRussianMetadata = document.querySelector('#chkPreferRussian').checked;
+
+                        ApiClient.updatePluginConfiguration(KinopoiskConfig.pluginUniqueId, config).then(function(result) {
+                            Dashboard.processPluginConfigurationUpdateResult(result);
+                        });
+                    });
+                    return false;
+                });
+        </script>
+    </div>
+</body>
+</html>
