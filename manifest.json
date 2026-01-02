@@ -12,7 +12,7 @@
         "changelog": "Начальный релиз:\n- Поддержка фильмов и сериалов\n- Загрузка постеров и задников\n- Информация об актёрах и режиссёрах\n- Кеширование запросов\n- Rate limiting",
         "targetAbi": "10.9.0.0",
         "sourceUrl": "https://github.com/SL1ZN1T3L/Jellyfin-kinopoisk-plugin/releases/download/v1.0.0/Jellyfin.Plugin.Kinopoisk_1.0.0.0.zip",
-        "checksum": "",
+        "checksum": "5447D03153F2A5DEF3F1CF1F0FD02580",
         "timestamp": "2024-01-01T00:00:00Z"
       }
     ]
